@@ -4,7 +4,7 @@
     "description": "a collaborative helicopter game app",
     "dependencies": {
         "express": "^4.8.6"
-    }
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/psethu/67-475-helicopter.git"
