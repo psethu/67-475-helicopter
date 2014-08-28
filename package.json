@@ -1,10 +1,14 @@
 {
-    "name": "475-plays-helicopter",
-    "version": "0.0.1",
-    "description": "a collaborative helicopter game app",
-    "dependencies": {
-        "express": "^4.8.6"
-    },
+  "name": "475-plays-helicopter",
+  "version": "0.0.1",
+  "description": "a collaborative helicopter game app",
+  "dependencies": {
+    "express": "^4.8.6",
+    "socket.io": "^1.0.6"
+  },
+  "engines": {
+  	"node": "0.10.x"
+  },
     "repository": {
         "type": "git",
         "url": "https://github.com/psethu/67-475-helicopter.git"
