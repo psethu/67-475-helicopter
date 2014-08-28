@@ -1,0 +1,8 @@
+{
+  "name": "475-plays-helicopter",
+  "version": "0.0.1",
+  "description": "a collaborative helicopter game app",
+  "dependencies": {
+    "express": "^4.8.6"
+  }
+}
