@@ -7,6 +7,10 @@
     "socket.io": "^1.0.6"
   },
   "engines": {
-  	"node": "0.10.x"
+    "node": "0.10.x"
+  },
+  "subdomain": "dreadlockjesus-67-475-helicopter",
+  "scripts": {
+    "start": "node app.js"
   }
 }
