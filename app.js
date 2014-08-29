@@ -67,6 +67,7 @@ io.on('connection', function(socket){
 	console.log('connection established');
 	controller.addPlayer();
 
+	//test
 	io.emit('confirm');
 
 	socket.on('buttondown', function(){
