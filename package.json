@@ -12,5 +12,9 @@
   "subdomain": "dreadlockjesus-67-475-helicopter",
   "scripts": {
     "start": "node app.js"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/psethu/67-475-helicopter.git"
   }
 }

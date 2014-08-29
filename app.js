@@ -54,10 +54,9 @@ app.get('/static/:file', function(req, res){
 });
 
 
-http.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
 	console.log('listening on port 3000');
 });
-
 
 ///////////////
 // Sockets
@@ -82,3 +81,4 @@ io.on('connection', function(socket){
 		controller.removePlayer();
 	});
 });
+
