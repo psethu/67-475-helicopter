@@ -319,14 +319,14 @@ var jsCopter = {
         this.scores.elements.top = this.createScore('top');
         
         // retrieve the current top score from cookie, if cookie script is present
-        // if (!!cookie && !!cookie.get) {
-        //     var topScore = cookie.get('topScore');
-        // }
+        if (!!cookie && !!cookie.get) {
+            var topScore = cookie.get('topScore');
+        }
 
         // condition : if a current top score exists, set it
-        // if (topScore) {
-        //     this.scores.top = this.scores.elements.top.innerHTML = topScore;
-        // }
+        if (topScore) {
+            this.scores.top = this.scores.elements.top.innerHTML = topScore;
+        }
     },
     
     
@@ -691,9 +691,9 @@ var jsCopter = {
             this.scores.elements.top.innerHTML = this.scores.current;
             
             // set cookie containing the top score
-            // if (cookie && cookie.set) {
-            //     cookie.set('topScore', this.scores.current, 1000, '/');
-            // }
+            if (cookie && cookie.set) {
+                cookie.set('topScore', this.scores.current, 1000, '/');
+            }
         } 
         
         // condition : create death text ?
