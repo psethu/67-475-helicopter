@@ -38,7 +38,7 @@ var jsCopter = {
             heightIncreaseStep : 10         // how much to increase the height of each wall by
         },
         obstacles : {
-            separation : 500,               // frequency of obstacles
+            separation : 400,               // frequency of obstacles
             width : 25,
             height : 100
         },
@@ -426,6 +426,14 @@ var jsCopter = {
         
             // update score
             this.updateScore();
+
+            if (jsCopter.scores.current === 300) {
+                //jsCopter.options.canvas.refreshRate = 5
+                this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate-0.25);
+                //console.log(jsCopter.scores.current)
+                //console.log(jsCopter.options.canvas.refreshRate)
+
+            }
 
         // condition : an impact has occurred, end the game
         } else {
