@@ -29,11 +29,11 @@ var jsCopter = {
             friction : 0.8
         },
         walls : {
-            separation : 19,                //fudge
+            separation : 15,                //fudge
             width : 20,                        
             step : 25,                       // potential height difference for each new wall
             startHeight : 200,
-            maxHeight : 300,
+            maxHeight : 400,
             heightIncreaseInterval : 5,     // how often to increase the height of each wall (from start to max)
             heightIncreaseStep : 10         // how much to increase the height of each wall by
         },
