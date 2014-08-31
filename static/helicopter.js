@@ -12,35 +12,35 @@ var jsCopter = {
     // object : default options, can be overwritten by init call
     options : {
         canvas : {
-            width : 500,
-            height : 300,
+            width : 1000,
+            height : 700,
             refreshRate : 20
         },
         copter : {
-            width : 30,
-            height : 15,
+            width : 50,
+            height : 25,
             topSpeed : 5,                   // max speed
-            acceleration : 0.15,            // how much to increase the speed by each time the game refreshes and the button is held down
+            acceleration : 0.3,            // how much to increase the speed by each time the game refreshes and the button is held down
             img : null                      // optional copter image path, relative to the html page
         },
         physics : {
             terminalVelocity : 4,           // max speed
-            gravity : 0.5,
+            gravity : 1,
             friction : 0.8
         },
         walls : {
             separation : 19,                //fudge
             width : 20,                        
-            step : 5,                       // potential height difference for each new wall
-            startHeight : 60,
-            maxHeight : 120,
+            step : 25,                       // potential height difference for each new wall
+            startHeight : 200,
+            maxHeight : 300,
             heightIncreaseInterval : 5,     // how often to increase the height of each wall (from start to max)
             heightIncreaseStep : 10         // how much to increase the height of each wall by
         },
         obstacles : {
-            separation : 250,               // frequency of obstacles
-            width : 20,
-            height : 50
+            separation : 500,               // frequency of obstacles
+            width : 25,
+            height : 100
         },
         colours : {
             bg : "#000000",
@@ -554,9 +554,9 @@ var jsCopter = {
             if (bigOne == 10) {
                 newHeight = this.gameData.walls.currentHeight/2;
             } else if (plusMinus == 1) {
-                newHeight = previousHeight + Math.floor(Math.random()*this.gameData.walls.currentStep);
+                newHeight = previousHeight + /*Math.floor(Math.random()**/this.gameData.walls.currentStep/*)*/;
             } else {
-                newHeight = previousHeight - Math.floor(Math.random()*this.gameData.walls.currentStep);
+                newHeight = previousHeight - /*Math.floor(Math.random()**/this.gameData.walls.currentStep/*)*/;
             }
             
             // condition : stop the height going too...high
