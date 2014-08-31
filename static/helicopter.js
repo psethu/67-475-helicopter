@@ -433,7 +433,7 @@ var jsCopter = {
                 //console.log(jsCopter.scores.current)
                 //console.log(jsCopter.options.canvas.refreshRate)
             }
-            if (jsCopter.scores.current === 300) {
+            if (jsCopter.scores.current === 500) {
                 //jsCopter.options.canvas.refreshRate = 5
                 this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+25);
                 //console.log(jsCopter.scores.current)
@@ -725,9 +725,6 @@ var jsCopter = {
         
         // set running variable
         this.gameRunning = false;
-
-        // reset to default interval
-        this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate);
     },
     
     
