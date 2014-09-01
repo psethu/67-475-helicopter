@@ -6,22 +6,13 @@
 
     <div id="helicopter-container">
     </div>
+    <script type="text/javascript" src="static/clientSocketInfo.js"></script>
+    <script>
+        var serverInfo = new serverInfo(socket);
+    </script>
     <script type="text/javascript" src="/static/cookies.js"></script>
     <script type="text/javascript" src="/static/helicopter.js"></script>
-    <script>
-        // initialise the copter
-        var options = {
-        copter : {
-                height : 15,
-                width : 30
-            },
-            canvas : {
-                height : 300,
-                width : 500,
-                refreshRate : 20
-            }
-        }
-        
-        jsCopter.init("helicopter", "helicopter-container");
+    <script>       
+        jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
 </body>

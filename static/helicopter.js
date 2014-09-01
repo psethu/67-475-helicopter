@@ -112,7 +112,7 @@ var jsCopter = {
      * 
      * @return void
      */
-    init: function(canvasId, parentId, options){
+    init: function(canvasId, parentId, serverInfo){
         
         // search for parent element - if not found, stop now
         this.container = document.getElementById(parentId);
@@ -147,7 +147,7 @@ var jsCopter = {
         this.createInitialWalls();
 
         // set a mouse listener to start the game
-        this.initButtonListener();
+        this.initButtonListener(serverInfo);
     },
 
         
@@ -361,24 +361,30 @@ var jsCopter = {
     /**
      * Initialise the mouse listener, to detect when the mouse button is being pressed
      */
-    initButtonListener: function(){
+    initButtonListener: function(serverInfo){
 
         // save 'this' state
         var that = this;
 
-        // detect mouse press
-        document.onmousedown = function(event) {
+        // // detect mouse press
+        // document.onmousedown = function(event) {
             
-            // condition : if mouse press is over the canvas element
-            if (event.target.id == that.canvas.id) {
+        //     // condition : if mouse press is over the canvas element
+        //     if (event.target.id == that.canvas.id) {
 
-                // tells the game 
-                that.mouseDown = true;
+        //         // tells the game 
+        //         that.mouseDown = true;
                 
-                // condition : if the game is not currently running, start it
-                if (that.gameRunning === false) {
-                    that.startGame();
-                }
+        //         // condition : if the game is not currently running, start it
+        //         if (that.gameRunning === false) {
+        //             that.startGame();
+        //         }
+        //     }
+
+        if (serverInfo.press){
+            that.mouseDown = true;
+            if (that.gameRunning === false) {
+                that.startGame();
             }
         }
 
@@ -410,7 +416,8 @@ var jsCopter = {
      * Draw the canvas element; function called repeatedly by interval
      * 
      */
-    draw: function() {
+    draw: function(serverInfo) {
+        
         
         // check for impact        
         var impact = this.checkForImpact();
@@ -435,7 +442,7 @@ var jsCopter = {
             }
             if (jsCopter.scores.current === 500) {
                 //jsCopter.options.canvas.refreshRate = 5
-                this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+25);
+                this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+40);
                 //console.log(jsCopter.scores.current)
                 //console.log(jsCopter.options.canvas.refreshRate)
             }
