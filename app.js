@@ -47,7 +47,7 @@ socketController.prototype.checkPress = function() {
 /////////////
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname + "/static/index.html")
+	res.sendFile(__dirname + "/static/index.html");
 });
 
 app.get('/static/:file', function(req, res){
@@ -55,40 +55,42 @@ app.get('/static/:file', function(req, res){
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
+http.listen(process.env.PORT || 3000, function(){
 	console.log('listening on port 3000');
 });
 
 ///////////////
 // Sockets
 ///////////////
-
+/*
 var infoPoll = io.of('/info-poll');
-
+*/
 io.on('connection', function(socket){
 	console.log('connection established');
 	controller.addPlayer();
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
+		socket.emit('test');
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
+		socket.emit('testup');
 	});
 
 	socket.on('disconnect', function(){
 		controller.removePlayer();
 	});
 });
-
+/*
 infoPoll.on('connection', function(socket) {
 	socket.on('numplayersreq', function() {
-		socket.emit('numplayers', controller.players);
+		socket.emit('players', controller.players);
 	});
 
 	socket.on('nummousedownsreq', function() {
-		socket.emit('nummousedowns', controller.mousedowns);
+		socket.emit('mousedowns', controller.mousedowns);
 	});
 
 	socket.on('checkpressreq', function() {
@@ -96,4 +98,5 @@ infoPoll.on('connection', function(socket) {
 		socket.emit('checkpress', res);
 	});
 });
+*/
 

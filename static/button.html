@@ -11,9 +11,10 @@
 
     </div><!-- end touch area -->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="clientSocketController.js" type="text/javascript"></script>
+    <script src="/static/clientSocketController.js" type="text/javascript"></script>
     <script src="clientSocketInfo.js"></script> <!-- need for knowing how many players -->
     <script src="main.js"></script>
+
     <script>
 
         var isPressed = false;
@@ -24,6 +25,7 @@
             location.replace("http://www.google.com")
 
     </script>
+
     <script>
         // Hides mobile browser's address bar when page is done loading.
         window.addEventListener('load', function(e) {
@@ -39,6 +41,7 @@
         var touchArea = document.getElementById('touch-area');
         var touchStartHandler = function(event){
                 touchArea.innerHTML = "Flying";
+                alert('flying');
                 if (isPressed === false) changeState();  
         }
         var touchEndHandler = function(event){
@@ -50,6 +53,7 @@
 
         var changeState = function(){
             if (isPressed === false){
+                alert('pressed');
                 isPressed = true;
                 controller.pressButton();
             } else {
