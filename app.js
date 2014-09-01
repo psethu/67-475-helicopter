@@ -34,6 +34,7 @@ socketController.prototype.removeMouseDown = function() {
 };
 
 socketController.prototype.checkPress = function() {
+	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
 		return true;
 	}
@@ -62,12 +63,11 @@ app.listen(process.env.PORT || 3000, function(){
 // Sockets
 ///////////////
 
+var infoPoll = io.of('/info-poll');
+
 io.on('connection', function(socket){
 	console.log('connection established');
 	controller.addPlayer();
-
-	//test
-	io.emit('confirm');
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
@@ -79,6 +79,21 @@ io.on('connection', function(socket){
 
 	socket.on('disconnect', function(){
 		controller.removePlayer();
+	});
+});
+
+infoPoll.on('connection', function(socket) {
+	socket.on('numplayersreq', function() {
+		socket.emit('numplayers', controller.players);
+	});
+
+	socket.on('nummousedownsreq', function() {
+		socket.emit('nummousedowns', controller.mousedowns);
+	});
+
+	socket.on('checkpressreq', function() {
+		var res = controller.checkPress();
+		socket.emit('checkpress', res);
 	});
 });
 
