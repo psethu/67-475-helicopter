@@ -14,6 +14,8 @@
     <script>
         var socket = io();
         var controller = new socketController(socket);
+
+        var isPressed = false;
     </script>
     <script>
         // Hides mobile browser's address bar when page is done loading.
@@ -30,12 +32,22 @@
         var touchArea = document.getElementById('touch-area');
         var touchStartHandler = function(event){
                 touchArea.innerHTML = "Flying";
-                controller.pressButton();  
+                if (isPressed === false) changeState();  
         }
         var touchEndHandler = function(event){
             if(event.targetTouches.length === 0)
                 touchArea.innerHTML = "Not flying";
-                controller.depressButton();  
+                if (isPressed === true) changeState();  
+        }
+
+        var changeState = function(){
+            if (isPressed === false){
+                isPressed = true;
+                controller.pressButton();
+            } else {
+                isPressed = false;
+                controller.depressButton();
+            }
         }
         touchArea.addEventListener('touchstart', touchStartHandler, false);
         touchArea.addEventListener('touchend', touchEndHandler, false);
