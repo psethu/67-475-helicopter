@@ -17,6 +17,13 @@
         var controller = new socketController(socket);
 
         var isPressed = false;
+
+        socket.on('test', function(){
+            alert('BUTTON DOWN');
+        });
+        socket.on('testup', function(){
+            alert('BUTTON UP');
+        });
     </script>
     <script>
         // Hides mobile browser's address bar when page is done loading.

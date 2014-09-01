@@ -71,10 +71,12 @@ io.on('connection', function(socket){
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
+		socket.emit('test');
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
+		socket.emit('testup');
 	});
 
 	socket.on('disconnect', function(){
@@ -84,11 +86,11 @@ io.on('connection', function(socket){
 
 infoPoll.on('connection', function(socket) {
 	socket.on('numplayersreq', function() {
-		socket.emit('numplayers', controller.players);
+		socket.emit('players', controller.players);
 	});
 
 	socket.on('nummousedownsreq', function() {
-		socket.emit('nummousedowns', controller.mousedowns);
+		socket.emit('mousedowns', controller.mousedowns);
 	});
 
 	socket.on('checkpressreq', function() {
