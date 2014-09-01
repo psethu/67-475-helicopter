@@ -403,6 +403,10 @@ var jsCopter = {
         
         // set interval to start the game
         this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate);
+        
+        console.log("Check before: "+this.canvasInterval)
+        clearInterval(this.canvasInterval)
+        console.log("Check after" + this.canvasInterval)
     },
     
     
@@ -427,7 +431,7 @@ var jsCopter = {
             // update score
             this.updateScore();
 
-            if (jsCopter.scores.current === 200) {
+            if (jsCopter.scores.current === 50) {
                 //jsCopter.options.canvas.refreshRate = 5
                 this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+50);
             }
