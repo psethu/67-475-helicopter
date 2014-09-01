@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>475 Plays Helicopter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="touch-area">
+
+    </div><!-- end touch area -->
+    <script>
+        // Hides mobile browser's address bar when page is done loading.
+        window.addEventListener('load', function(e) {
+            setTimeout(function() { window.scrollTo(0, 1); }, 1);
+        }, false);
+
+        //Prevents scrolling and stops iOS scrollover bounce effect
+        document.body.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, false); 
+
+        //Adds event handlers for touching the touch area
+        var touchArea = document.getElementById('touch-area');
+        var touchStartHandler = function(event){
+            if(event.targetTouches.length >= 0)
+                touchArea.innerHTML = "Flying";  
+            console.log("Start", event);
+        }
+        var touchEndHandler = function(event){
+            if(event.targetTouches.length === 0)
+                touchArea.innerHTML = "Not flying";  
+            console.log("End", event);
+        }
+        touchArea.addEventListener('touchstart', touchStartHandler, false);
+        touchArea.addEventListener('touchend', touchEndHandler, false);
+
+    </script>
+</body>
+</html>
