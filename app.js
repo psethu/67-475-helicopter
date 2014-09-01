@@ -62,9 +62,7 @@ http.listen(process.env.PORT || 3000, function(){
 ///////////////
 // Sockets
 ///////////////
-/*
-var infoPoll = io.of('/info-poll');
-*/
+
 io.on('connection', function(socket){
 	console.log('connection established');
 	controller.addPlayer();
@@ -79,12 +77,6 @@ io.on('connection', function(socket){
 		socket.emit('testup');
 	});
 
-	socket.on('disconnect', function(){
-		controller.removePlayer();
-	});
-});
-/*
-infoPoll.on('connection', function(socket) {
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
 	});
@@ -96,7 +88,11 @@ infoPoll.on('connection', function(socket) {
 	socket.on('checkpressreq', function() {
 		var res = controller.checkPress();
 		socket.emit('checkpress', res);
+	});	
+
+	socket.on('disconnect', function(){
+		controller.removePlayer();
 	});
 });
-*/
+
 

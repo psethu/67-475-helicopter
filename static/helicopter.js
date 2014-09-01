@@ -112,7 +112,7 @@ var jsCopter = {
      * 
      * @return void
      */
-    init: function(canvasId, parentId, options){
+    init: function(canvasId, parentId, si){
         
         // search for parent element - if not found, stop now
         this.container = document.getElementById(parentId);
@@ -146,10 +146,11 @@ var jsCopter = {
         // create initial floor & ceiling
         this.createInitialWalls();
 
-        // set a mouse listener to start the game
-        this.initButtonListener();
-    },
+        // // set a mouse listener to start the game
+        // this.initButtonListener(serverInfo);
 
+        this.serverInfo = si;
+    },
         
     /*
      * create a canvas element of specific size
@@ -361,24 +362,30 @@ var jsCopter = {
     /**
      * Initialise the mouse listener, to detect when the mouse button is being pressed
      */
-    initButtonListener: function(){
+    changeDirections: function(){
 
         // save 'this' state
         var that = this;
 
-        // detect mouse press
-        document.onmousedown = function(event) {
+        // // detect mouse press
+        // document.onmousedown = function(event) {
             
-            // condition : if mouse press is over the canvas element
-            if (event.target.id == that.canvas.id) {
+        //     // condition : if mouse press is over the canvas element
+        //     if (event.target.id == that.canvas.id) {
 
-                // tells the game 
-                that.mouseDown = true;
+        //         // tells the game 
+        //         that.mouseDown = true;
                 
-                // condition : if the game is not currently running, start it
-                if (that.gameRunning === false) {
-                    that.startGame();
-                }
+        //         // condition : if the game is not currently running, start it
+        //         if (that.gameRunning === false) {
+        //             that.startGame();
+        //         }
+        //     }
+
+        if (this.serverInfo.press){
+            that.mouseDown = true;
+            if (that.gameRunning === false) {
+                that.startGame();
             }
         }
 
@@ -415,6 +422,7 @@ var jsCopter = {
      * 
      */
     draw: function() {
+        this.serverInfo.checkPress();
         
         // check for impact        
         var impact = this.checkForImpact();

@@ -41,7 +41,6 @@
         var touchArea = document.getElementById('touch-area');
         var touchStartHandler = function(event){
                 touchArea.innerHTML = "Flying";
-                alert('flying');
                 if (isPressed === false) changeState();  
         }
         var touchEndHandler = function(event){
@@ -53,7 +52,6 @@
 
         var changeState = function(){
             if (isPressed === false){
-                alert('pressed');
                 isPressed = true;
                 controller.pressButton();
             } else {

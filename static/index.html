@@ -1,14 +1,23 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/static/clientSocketController.js"></script>
-<script src="/static/main.js"></script>
+<script src="/static/clientSocketInfo.js"></script>
+<script type="text/javascript">
+	var socket = io();
+</script>
 <body>
 	<h1>Welcome player</h1>
 
     <div id="helicopter-container">
     </div>
+    <script type="text/javascript" src="/static/clientSocketInfo.js"></script>
+    <script>
+        var serverInfo = new serverInfo(socket);
+    </script>
     <script type="text/javascript" src="/static/cookies.js"></script>
     <script type="text/javascript" src="/static/helicopter.js"></script>
     <script>
+    	//this will cause the server info object to refresh every 50 seconds
+    	setTimeout('serverInfo.checkPress()', 50);
         // initialise the copter
         var options = {
         copter : {
@@ -21,7 +30,7 @@
                 refreshRate : 20
             }
         }
-        
-        jsCopter.init("helicopter", "helicopter-container");
+              
+        jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
 </body>
