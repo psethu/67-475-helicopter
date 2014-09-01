@@ -14,6 +14,10 @@
 
     <div id="helicopter-container">
     </div>
+    <script type="text/javascript" src="static/clientSocketInfo.js"></script>
+    <script>
+        var serverInfo = new serverInfo(socket);
+    </script>
     <script type="text/javascript" src="/static/cookies.js"></script>
     <script type="text/javascript" src="/static/helicopter.js"></script>
     <script>
@@ -29,7 +33,7 @@
                 refreshRate : 20
             }
         }
-        
-        jsCopter.init("helicopter", "helicopter-container", s);
+              
+        jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
 </body>
