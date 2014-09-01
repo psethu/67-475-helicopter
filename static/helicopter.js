@@ -7,8 +7,8 @@
  * @author petegoodman.com
  */
 
-var jsCopter = {
-    
+
+var jsCopter = {   
     // object : default options, can be overwritten by init call
     options : {
         canvas : {
