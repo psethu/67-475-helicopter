@@ -47,7 +47,7 @@ socketController.prototype.checkPress = function() {
 /////////////
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname + "/static/index.html")
+	res.sendFile(__dirname + "/static/index.html");
 });
 
 app.get('/static/:file', function(req, res){
@@ -55,16 +55,16 @@ app.get('/static/:file', function(req, res){
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
+http.listen(process.env.PORT || 3000, function(){
 	console.log('listening on port 3000');
 });
 
 ///////////////
 // Sockets
 ///////////////
-
+/*
 var infoPoll = io.of('/info-poll');
-
+*/
 io.on('connection', function(socket){
 	console.log('connection established');
 	controller.addPlayer();
@@ -83,7 +83,7 @@ io.on('connection', function(socket){
 		controller.removePlayer();
 	});
 });
-
+/*
 infoPoll.on('connection', function(socket) {
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
@@ -98,4 +98,5 @@ infoPoll.on('connection', function(socket) {
 		socket.emit('checkpress', res);
 	});
 });
+*/
 
