@@ -35,9 +35,10 @@
                 if (isPressed === false) changeState();  
         }
         var touchEndHandler = function(event){
-            if(event.targetTouches.length === 0)
+            if(event.targetTouches.length === 0) {
                 touchArea.innerHTML = "Not flying";
-                if (isPressed === true) changeState();  
+                if (isPressed === true) changeState();
+            }  
         }
 
         var changeState = function(){
