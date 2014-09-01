@@ -4,21 +4,25 @@ function socketController(s) {
 };
 
 socketController.prototype.sendButtonDown = function() {
-	if(this.buttonDown)
+	if(!this.buttonDown)
 		this.socket.emit('buttondown');
+	else return false;
 };
 
 socketController.prototype.sendButtonUp = function() {
-	if(!this.buttonDown)
+	if(this.buttonDown)
 		this.socket.emit('buttonup');
+	else return false;
 };
 
 socketController.prototype.pressButton = function() {
-	this.buttonDown = true;
-	this.sendButtonDown();
+	if(this.sendButtonDown())
+		this.buttonDown = true;
+	else return false;
 };
 
 socketController.prototype.depressButton = function() {
-	this.buttonDown = false;
-	this.sendButtonUp();
+	if(this.sendButtonUp())
+		this.buttonDown = false;
+	else return false;
 };
