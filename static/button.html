@@ -29,11 +29,13 @@
         //Adds event handlers for touching the touch area
         var touchArea = document.getElementById('touch-area');
         var touchStartHandler = function(event){
-                touchArea.innerHTML = "Flying";  
+                touchArea.innerHTML = "Flying";
+                controller.pressButton();  
         }
         var touchEndHandler = function(event){
             if(event.targetTouches.length === 0)
-                touchArea.innerHTML = "Not flying";  
+                touchArea.innerHTML = "Not flying";
+                controller.depressButton();  
         }
         touchArea.addEventListener('touchstart', touchStartHandler, false);
         touchArea.addEventListener('touchend', touchEndHandler, false);
