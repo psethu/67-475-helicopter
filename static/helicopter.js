@@ -147,7 +147,7 @@ var jsCopter = {
         this.createInitialWalls();
 
         // set a mouse listener to start the game
-        this.initMouseListener();
+        this.initButtonListener();
     },
 
         
@@ -361,7 +361,7 @@ var jsCopter = {
     /**
      * Initialise the mouse listener, to detect when the mouse button is being pressed
      */
-    initMouseListener: function(){
+    initButtonListener: function(){
 
         // save 'this' state
         var that = this;

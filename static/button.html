@@ -10,6 +10,11 @@
     <div id="touch-area">
 
     </div><!-- end touch area -->
+    <script src="clientSocketController.js" type="text/javascript"></script>
+    <script>
+        var socket = io();
+        var controller = new socketController(socket);
+    </script>
     <script>
         // Hides mobile browser's address bar when page is done loading.
         window.addEventListener('load', function(e) {
