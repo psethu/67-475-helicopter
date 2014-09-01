@@ -112,7 +112,7 @@ var jsCopter = {
      * 
      * @return void
      */
-    init: function(canvasId, parentId, serverInfo){
+    init: function(canvasId, parentId, si){
         
         // search for parent element - if not found, stop now
         this.container = document.getElementById(parentId);
@@ -146,10 +146,11 @@ var jsCopter = {
         // create initial floor & ceiling
         this.createInitialWalls();
 
-        // set a mouse listener to start the game
-        this.initButtonListener(serverInfo);
-    },
+        // // set a mouse listener to start the game
+        // this.initButtonListener(serverInfo);
 
+        this.serverInfo = si;
+    },
         
     /*
      * create a canvas element of specific size
@@ -361,7 +362,7 @@ var jsCopter = {
     /**
      * Initialise the mouse listener, to detect when the mouse button is being pressed
      */
-    initButtonListener: function(serverInfo){
+    changeDirections: function(){
 
         // save 'this' state
         var that = this;
@@ -381,7 +382,7 @@ var jsCopter = {
         //         }
         //     }
 
-        if (serverInfo.press){
+        if (this.serverInfo.press){
             that.mouseDown = true;
             if (that.gameRunning === false) {
                 that.startGame();
@@ -416,8 +417,8 @@ var jsCopter = {
      * Draw the canvas element; function called repeatedly by interval
      * 
      */
-    draw: function(serverInfo) {
-        
+    draw: function() {
+        this.serverInfo.checkPress();
         
         // check for impact        
         var impact = this.checkForImpact();
