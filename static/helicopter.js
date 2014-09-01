@@ -7,8 +7,8 @@
  * @author petegoodman.com
  */
 
-var jsCopter = {
-    
+
+var jsCopter = {   
     // object : default options, can be overwritten by init call
     options : {
         canvas : {
@@ -434,17 +434,9 @@ var jsCopter = {
             // update score
             this.updateScore();
 
-            if (jsCopter.scores.current === 50) {
+            if (jsCopter.scores.current === 200) {
                 //jsCopter.options.canvas.refreshRate = 5
                 this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+50);
-                //console.log(jsCopter.scores.current)
-                //console.log(jsCopter.options.canvas.refreshRate)
-            }
-            if (jsCopter.scores.current === 500) {
-                //jsCopter.options.canvas.refreshRate = 5
-                this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+40);
-                //console.log(jsCopter.scores.current)
-                //console.log(jsCopter.options.canvas.refreshRate)
             }
 
         // condition : an impact has occurred, end the game
