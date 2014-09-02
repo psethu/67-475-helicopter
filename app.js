@@ -27,17 +27,21 @@ socketController.prototype.removePlayer = function() {
 
 socketController.prototype.addMouseDown = function() {
 	this.mouseDowns += 1;
+    console.log("MouseDowns up, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.removeMouseDown = function() {
 	this.mouseDowns -= 1;
+    console.log("MouseDowns down, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.checkPress = function() {
 	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
+        console.log("Going Up");
 		return true;
 	}
+    console.log("Going Down");
 	return false;
 };
 
@@ -64,18 +68,23 @@ http.listen(process.env.PORT || 3000, function(){
 ///////////////
 
 io.on('connection', function(socket){
-	console.log('connection established');
-	console.log("players: "+controller.players)
-	controller.addPlayer();
+	console.log("players: "+controller.players);
+	
+
+	socket.on('join', function(){
+		controller.addPlayer();
+	});
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
 		socket.emit('test');
+		console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
 		socket.emit('testup');
+		console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('numplayersreq', function() {
@@ -83,13 +92,13 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('nummousedownsreq', function() {
-		socket.emit('mousedowns', controller.mousedowns);
+		socket.emit('mousedowns', controller.mouseDowns);
 	});
 
 	socket.on('checkpressreq', function() {
 		var res = controller.checkPress();
 		socket.emit('checkpress', res);
-	});	
+	});
 
 	socket.on('disconnect', function(){
 		controller.removePlayer();
