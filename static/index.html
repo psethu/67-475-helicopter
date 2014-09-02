@@ -17,7 +17,7 @@
     <script type="text/javascript" src="/static/helicopter.js"></script>
     <script>
     	//this will cause the server info object to refresh every 50 milliseconds
-    	setTimeout('serverInfo.checkPress()', 50);
+    	setInterval('serverInfo.checkPress()', 50);
         // initialise the copter
         jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
