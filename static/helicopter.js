@@ -423,6 +423,7 @@ var jsCopter = {
      * 
      */
     draw: function() {
+        console.log("In draw")
         this.serverInfo.checkPress();
         
         // check for impact        
