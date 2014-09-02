@@ -77,12 +77,12 @@ io.on('connection', function(socket){
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
-		socket.emit('test');
+		socket.emit('test', {mousedowns: controller.mouseDowns, players: controller.players});
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
-		socket.emit('testup', {mousedowns: controller.mouseDowns, players: controller.players});
+		socket.emit('testup');
 	});
 
 	socket.on('numplayersreq', function() {

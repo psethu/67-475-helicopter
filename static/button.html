@@ -21,7 +21,7 @@
 
         var isPressed = false;
 
-        socket.on('testup', function(data){
+        socket.on('test', function(data){
             document.getElementById('test').innerHTML = 'server registered click';
             alert("numplayers: " + data.players + " numMouses: " + data.mousedowns);
         });
@@ -58,8 +58,7 @@
                 controller.pressButton();
             } else {
                 isPressed = false;
-                if(!controller.depressButton())
-                    alert('button press failed');
+                controller.depressButton()
             }   
         }
         touchArea.addEventListener('touchstart', touchStartHandler, false);
