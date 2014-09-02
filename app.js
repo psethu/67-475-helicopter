@@ -38,10 +38,10 @@ socketController.prototype.removeMouseDown = function() {
 socketController.prototype.checkPress = function() {
 	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
-        console.log("Going Up");
+        //console.log("Going Up");
 		return true;
 	}
-    console.log("Going Down");
+    //console.log("Going Down");
 	return false;
 };
 
@@ -90,7 +90,11 @@ playroom.on('connection', function(socket){
 	
 });
 
-io.on('connection', function(socket){
+var indexpage = io.of('/index-page')
+
+indexpage.on('connection', function(socket){
+
+	console.log('indexpage connected');
 
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
@@ -105,6 +109,10 @@ io.on('connection', function(socket){
 		socket.emit('checkpress', res);
 	});
 
+});
+
+io.on('connection', function(socket){
+	console.log('socket connection set');
 });
 
 
