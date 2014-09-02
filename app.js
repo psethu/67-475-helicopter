@@ -65,20 +65,22 @@ http.listen(process.env.PORT || 3000, function(){
 
 io.on('connection', function(socket){
 	console.log("players: "+controller.players);
-	controller.addPlayer();
+	
 
 	socket.on('join', function(){
-		
+		controller.addPlayer();
 	});
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
-		socket.emit('test', {mousedowns: controller.mouseDowns, players: controller.players});
+		socket.emit('test');
+		console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
 		socket.emit('testup');
+		console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('numplayersreq', function() {
@@ -86,13 +88,13 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('nummousedownsreq', function() {
-		socket.emit('mousedowns', controller.mousedowns);
+		socket.emit('mousedowns', controller.mouseDowns);
 	});
 
 	socket.on('checkpressreq', function() {
 		var res = controller.checkPress();
 		socket.emit('checkpress', res);
-	});	
+	});
 
 	socket.on('disconnect', function(){
 		controller.removePlayer();
