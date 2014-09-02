@@ -67,7 +67,7 @@ http.listen(process.env.PORT || 3000, function(){
 // Sockets
 ///////////////
 
-var playroom = io.of('player-room');
+var playroom = io.of('/player-room');
 
 playroom.on('connection', function(socket){
 	controller.addPlayer();
