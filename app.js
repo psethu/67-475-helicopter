@@ -69,10 +69,9 @@ http.listen(process.env.PORT || 3000, function(){
 
 io.on('connection', function(socket){
 	console.log("players: "+controller.players);
-	
-
+	controller.addPlayer();
 	socket.on('join', function(){
-		controller.addPlayer();
+		
 	});
 
 	socket.on('buttondown', function(){
