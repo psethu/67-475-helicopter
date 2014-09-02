@@ -38,10 +38,8 @@ socketController.prototype.removeMouseDown = function() {
 socketController.prototype.checkPress = function() {
 	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
-       // console.log("Going Up");
 		return true;
 	}
-    //console.log("Going Down");
 	return false;
 };
 
@@ -67,12 +65,10 @@ http.listen(process.env.PORT || 3000, function(){
 // Sockets
 ///////////////
 
-io.on('connection', function(socket){
-	console.log("players: "+controller.players);
+var playroom = io.of('/player-room');
+
+playroom.on('connection', function(socket){
 	controller.addPlayer();
-	socket.on('join', function(){
-		
-	});
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
@@ -85,6 +81,18 @@ io.on('connection', function(socket){
 		socket.emit('testup');
 		console.log('mouseDowns: '+controller.mouseDowns);
 	});
+
+	socket.on('disconnect', function(){
+		controller.removePlayer();
+	});
+	
+});
+
+var indexpage = io.of('/index-page')
+
+indexpage.on('connection', function(socket){
+
+	console.log('indexpage connected');
 
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
@@ -99,9 +107,10 @@ io.on('connection', function(socket){
 		socket.emit('checkpress', res);
 	});
 
-	socket.on('disconnect', function(){
-		controller.removePlayer();
-	});
+});
+
+io.on('connection', function(socket){
+	console.log('socket connection set');
 });
 
 
