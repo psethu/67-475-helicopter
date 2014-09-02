@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="touch-area">
-
+        <img id="helicopter" class="helicopter-centered" src="/static/helicopter-icon.png">
     </div><!-- end touch area -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/clientSocketController.js" type="text/javascript"></script>
@@ -36,12 +36,10 @@
         //Adds event handlers for touching the touch area
         var touchArea = document.getElementById('touch-area');
         var touchStartHandler = function(event){
-                touchArea.innerHTML = "Flying";
                 if (isPressed === false) changeState();  
         }
         var touchEndHandler = function(event){
             if(event.targetTouches.length === 0) {
-                touchArea.innerHTML = "Not flying";
                 if (isPressed === true) changeState();
             }  
         }
@@ -49,9 +47,11 @@
         var changeState = function(){
             if (isPressed === false){
                 isPressed = true;
+                document.getElementById("helicopter").className="slideUp helicopter-top";
                 controller.pressButton();
             } else {
                 isPressed = false;
+                document.getElementById("helicopter").className="slideDown helicopter-bottom";
                 controller.depressButton();
             }
         }
