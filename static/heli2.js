@@ -43,9 +43,9 @@ var jsCopter = {
             height : 100
         },
         colours : {
-            bg : "#000000",
-            fill : "#ff9900",
-            light : "#ffffff"
+            bg : "#400d12",
+            fill : "#4fd5d6",
+            light : "#f8ca00"
         }
     },
     
