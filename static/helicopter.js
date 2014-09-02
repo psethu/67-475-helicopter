@@ -150,6 +150,8 @@ var jsCopter = {
         // this.initButtonListener(serverInfo);
 
         this.serverInfo = si;
+
+        setInterval('jsCopter.changeDirections',50)
     },
         
     /*

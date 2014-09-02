@@ -38,10 +38,10 @@ socketController.prototype.removeMouseDown = function() {
 socketController.prototype.checkPress = function() {
 	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
-        console.log("Going Up");
+       // console.log("Going Up");
 		return true;
 	}
-    console.log("Going Down");
+    //console.log("Going Down");
 	return false;
 };
 
