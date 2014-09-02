@@ -7,40 +7,40 @@
  * @author petegoodman.com
  */
 
-
-var jsCopter = {   
+var jsCopter = {
+    
     // object : default options, can be overwritten by init call
     options : {
         canvas : {
-            width : 1000,
-            height : 700,
+            width : 500,
+            height : 300,
             refreshRate : 20
         },
         copter : {
-            width : 50,
-            height : 25,
+            width : 30,
+            height : 15,
             topSpeed : 5,                   // max speed
-            acceleration : 0.3,            // how much to increase the speed by each time the game refreshes and the button is held down
+            acceleration : 0.15,            // how much to increase the speed by each time the game refreshes and the button is held down
             img : null                      // optional copter image path, relative to the html page
         },
         physics : {
             terminalVelocity : 4,           // max speed
-            gravity : 1,
+            gravity : 0.5,
             friction : 0.8
         },
         walls : {
-            separation : 15,                //fudge
+            separation : 19,                //fudge
             width : 20,                        
-            step : 25,                       // potential height difference for each new wall
-            startHeight : 200,
-            maxHeight : 400,
+            step : 5,                       // potential height difference for each new wall
+            startHeight : 60,
+            maxHeight : 120,
             heightIncreaseInterval : 5,     // how often to increase the height of each wall (from start to max)
             heightIncreaseStep : 10         // how much to increase the height of each wall by
         },
         obstacles : {
-            separation : 400,               // frequency of obstacles
-            width : 25,
-            height : 100
+            separation : 250,               // frequency of obstacles
+            width : 20,
+            height : 50
         },
         colours : {
             bg : "#000000",
@@ -146,13 +146,14 @@ var jsCopter = {
         // create initial floor & ceiling
         this.createInitialWalls();
 
-        // // set a mouse listener to start the game
-        // this.initButtonListener(serverInfo);
+        // set a mouse listener to start the game
+        this.initMouseListener();
 
         this.serverInfo = si;
 
-        setInterval('jsCopter.changeDirections()',50)
+        setInterval('jsCopter.changeDirections()',50);
     },
+
         
     /*
      * create a canvas element of specific size
@@ -364,8 +365,35 @@ var jsCopter = {
     /**
      * Initialise the mouse listener, to detect when the mouse button is being pressed
      */
+    initMouseListener: function(){
+
+        // save 'this' state
+        var that = this;
+
+        // detect mouse press
+        document.onmousedown = function(event) {
+            
+            // condition : if mouse press is over the canvas element
+            if (event.target.id == that.canvas.id) {
+
+                // tells the game 
+                that.mouseDown = true;
+                
+                // condition : if the game is not currently running, start it
+                if (that.gameRunning === false) {
+                    that.startGame();
+                }
+            }
+        }
+
+        // detect mouse release
+        document.onmouseup = function(event) {
+            that.mouseDown = false;
+        }
+    },
+
     changeDirections: function(){
-        console.log('change directions called');
+        //console.log('change directions called');
         // save 'this' state
         var that = this;
 
@@ -387,7 +415,7 @@ var jsCopter = {
         if (that.serverInfo.press === true){
             //console.log("up");
             that.mouseDown = true;
-            console.log("game running: "+that.gameRunning);
+            //console.log("game running: "+that.gameRunning);
             if (that.gameRunning === false) {
                 that.startGame();
             }
@@ -414,12 +442,7 @@ var jsCopter = {
         this.gameRunning = true;
         
         // set interval to start the game
-        console.log("Before start game: "+this.options.canvas.refreshRate)
         this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate);
-        
-        console.log("Check before: "+this.canvasInterval)
-        clearInterval(this.canvasInterval)
-        console.log("Check after" + this.canvasInterval)
     },
     
     
@@ -428,7 +451,6 @@ var jsCopter = {
      * 
      */
     draw: function() {
-        console.log("In draw")
         
         // check for impact        
         var impact = this.checkForImpact();
@@ -444,12 +466,6 @@ var jsCopter = {
         
             // update score
             this.updateScore();
-
-            if (jsCopter.scores.current === 50) {
-                console.log("Before increment: "+this.options.canvas.refreshRate)
-                this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+50);
-                console.log("After increment: "+this.options.canvas.refreshRate)
-            }
 
         // condition : an impact has occurred, end the game
         } else {
@@ -578,9 +594,9 @@ var jsCopter = {
             if (bigOne == 10) {
                 newHeight = this.gameData.walls.currentHeight/2;
             } else if (plusMinus == 1) {
-                newHeight = previousHeight + /*Math.floor(Math.random()**/this.gameData.walls.currentStep/*)*/;
+                newHeight = previousHeight + Math.floor(Math.random()*this.gameData.walls.currentStep);
             } else {
-                newHeight = previousHeight - /*Math.floor(Math.random()**/this.gameData.walls.currentStep/*)*/;
+                newHeight = previousHeight - Math.floor(Math.random()*this.gameData.walls.currentStep);
             }
             
             // condition : stop the height going too...high

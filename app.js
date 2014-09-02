@@ -19,20 +19,22 @@ function socketController() {
 
 socketController.prototype.addPlayer = function() {
 	this.players += 1;
+    console.log(this.players);
 };
 
 socketController.prototype.removePlayer = function() {
 	this.players -= 1;
+    console.log(this.players);
 };
 
 socketController.prototype.addMouseDown = function() {
 	this.mouseDowns += 1;
-    console.log("MouseDowns up, mouseDowns: "+this.mouseDowns);
+    //console.log("MouseDowns up, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.removeMouseDown = function() {
 	this.mouseDowns -= 1;
-    console.log("MouseDowns down, mouseDowns: "+this.mouseDowns);
+    //console.log("MouseDowns down, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.checkPress = function() {
@@ -73,13 +75,13 @@ playroom.on('connection', function(socket){
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
 		socket.emit('test');
-		console.log('mouseDowns: '+controller.mouseDowns);
+		//console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
 		socket.emit('testup');
-		console.log('mouseDowns: '+controller.mouseDowns);
+		//console.log('mouseDowns: '+controller.mouseDowns);
 	});
 
 	socket.on('disconnect', function(){

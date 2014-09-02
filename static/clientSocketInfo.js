@@ -16,7 +16,7 @@ function serverInfo(s) {
 
 	this.socket.on('checkpress', function(b) {
 		that.setPress(b);
-		console.log(that.press);
+		//console.log(that.press);
 	});
 }
 
