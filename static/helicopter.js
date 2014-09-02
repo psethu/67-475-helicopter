@@ -409,6 +409,7 @@ var jsCopter = {
         this.gameRunning = true;
         
         // set interval to start the game
+        console.log("Before start game: "+this.options.canvas.refreshRate)
         this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate);
         
         console.log("Check before: "+this.canvasInterval)
@@ -440,8 +441,9 @@ var jsCopter = {
             this.updateScore();
 
             if (jsCopter.scores.current === 50) {
-                //jsCopter.options.canvas.refreshRate = 5
+                console.log("Before increment: "+this.options.canvas.refreshRate)
                 this.canvasInterval = setInterval('jsCopter.draw()', this.options.canvas.refreshRate+50);
+                console.log("After increment: "+this.options.canvas.refreshRate)
             }
 
         // condition : an impact has occurred, end the game

@@ -9,7 +9,6 @@
 
     <div id="helicopter-container">
     </div>
-    <script type="text/javascript" src="/static/clientSocketInfo.js"></script>
     <script>
         var serverInfo = new serverInfo(socket);
     </script>
@@ -32,5 +31,15 @@
         }
               
         jsCopter.init("helicopter", "helicopter-container", serverInfo);
+    </script>
+    <script>
+        /* re-direct if more than 1 player navigated to game's url */
+        serverInfo.getNumPlayers() // let server know to get players
+        socket.on('players', function (players) {
+            console.log("players");
+            console.log(players);
+            if (players > 1)
+                location.replace(location.href+"static/button.html")
+        });
     </script>
 </body>

@@ -13,16 +13,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/clientSocketController.js" type="text/javascript"></script>
     <script src="clientSocketInfo.js"></script> <!-- need for knowing how many players -->
-    <script src="main.js"></script>
 
     <script>
+        var socket = io();
+        var controller = new socketController(socket);
 
         var isPressed = false;
-
-        /* re-direct if more than 1 player navigated to game's url */
-        var players = (new serverInfo(socket)).getNumPlayers()
-        if (players > 1)
-            location.replace("http://www.google.com")
 
     </script>
 
