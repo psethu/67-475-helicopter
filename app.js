@@ -67,12 +67,10 @@ http.listen(process.env.PORT || 3000, function(){
 // Sockets
 ///////////////
 
-io.on('connection', function(socket){
-	console.log("players: "+controller.players);
+var playroom = io.of('player-room');
+
+playroom.on('connection', function(socket){
 	controller.addPlayer();
-	socket.on('join', function(){
-		
-	});
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
@@ -85,6 +83,14 @@ io.on('connection', function(socket){
 		socket.emit('testup');
 		console.log('mouseDowns: '+controller.mouseDowns);
 	});
+
+	socket.on('disconnect', function(){
+		controller.removePlayer();
+	});
+	
+});
+
+io.on('connection', function(socket){
 
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
@@ -99,9 +105,6 @@ io.on('connection', function(socket){
 		socket.emit('checkpress', res);
 	});
 
-	socket.on('disconnect', function(){
-		controller.removePlayer();
-	});
 });
 
 
