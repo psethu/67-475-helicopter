@@ -15,6 +15,7 @@ function socketController() {
 	this.players = 0;
 	this.mouseDowns = 0;
 	this.pressButton = false;
+	this.indexActive = false;
 }
 
 socketController.prototype.addPlayer = function() {
@@ -94,7 +95,12 @@ var indexpage = io.of('/index-page')
 
 indexpage.on('connection', function(socket){
 
-	console.log('indexpage connected');
+	if(controller.indexActive) {
+		socket.emit('donotconnect');
+	}
+	else {
+		controller.indexActive = true;
+	}
 
 	socket.on('numplayersreq', function() {
 		socket.emit('players', controller.players);
