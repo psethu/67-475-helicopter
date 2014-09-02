@@ -119,9 +119,9 @@ var jsCopter = {
         if (!this.container) return false;
         
         // set the options
-        for (var optionType in options) {
-            for (var subOption in options[optionType]) {
-                this.options[optionType][subOption] = options[optionType][subOption];
+        for (var optionType in this.options) {
+            for (var subOption in this.options[optionType]) {
+                this.options[optionType][subOption] = this.options[optionType][subOption];
             }
         };
         
@@ -382,7 +382,8 @@ var jsCopter = {
         //         }
         //     }
 
-        if (this.serverInfo.press){
+        if (that.serverInfo.press === true){
+            console.log("up");
             that.mouseDown = true;
             if (that.gameRunning === false) {
                 that.startGame();
@@ -390,7 +391,8 @@ var jsCopter = {
         }
 
         // detect mouse release
-        document.onmouseup = function(event) {
+        if (that.serverInfo.press === false) {
+            console.log("down");
             that.mouseDown = false;
         }
     },
@@ -424,7 +426,6 @@ var jsCopter = {
      */
     draw: function() {
         console.log("In draw")
-        this.serverInfo.checkPress();
         
         // check for impact        
         var impact = this.checkForImpact();

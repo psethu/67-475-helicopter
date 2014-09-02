@@ -18,18 +18,6 @@
     	// refresh server info object every 50 seconds
     	setTimeout('serverInfo.checkPress()', 50);
         // initialise the copter
-        var options = {
-        copter : {
-                height : 15,
-                width : 30
-            },
-            canvas : {
-                height : 300,
-                width : 500,
-                refreshRate : 20
-            }
-        }
-              
         jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
     <script>

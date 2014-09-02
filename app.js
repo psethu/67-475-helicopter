@@ -27,17 +27,21 @@ socketController.prototype.removePlayer = function() {
 
 socketController.prototype.addMouseDown = function() {
 	this.mouseDowns += 1;
+    console.log("MouseDowns up, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.removeMouseDown = function() {
 	this.mouseDowns -= 1;
+    console.log("MouseDowns down, mouseDowns: "+this.mouseDowns);
 };
 
 socketController.prototype.checkPress = function() {
 	//if half or more of the players are pressing the button, return true
 	if (this.players > 0 && this.mouseDowns >= (this.players / 2)) {
+        console.log("Going Up");
 		return true;
 	}
+    console.log("Going Down");
 	return false;
 };
 
