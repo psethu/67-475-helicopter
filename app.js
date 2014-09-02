@@ -68,9 +68,12 @@ http.listen(process.env.PORT || 3000, function(){
 ///////////////
 
 io.on('connection', function(socket){
-	console.log('connection established');
-	console.log("players: "+controller.players)
+	console.log("players: "+controller.players);
 	controller.addPlayer();
+
+	socket.on('join', function(){
+		
+	});
 
 	socket.on('buttondown', function(){
 		controller.addMouseDown();
@@ -79,7 +82,7 @@ io.on('connection', function(socket){
 
 	socket.on('buttonup', function(){
 		controller.removeMouseDown();
-		socket.emit('testup');
+		socket.emit('testup', {mousedowns: controller.mouseDowns, players: controller.players});
 	});
 
 	socket.on('numplayersreq', function() {
