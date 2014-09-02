@@ -58,8 +58,8 @@
                 controller.pressButton();
             } else {
                 isPressed = false;
-                // if(!controller.depressButton())
-                //     alert('button press failed');
+                if(!controller.depressButton())
+                    alert('button press failed');
             }   
         }
         touchArea.addEventListener('touchstart', touchStartHandler, false);
