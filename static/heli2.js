@@ -12,13 +12,13 @@ var jsCopter = {
     // object : default options, can be overwritten by init call
     options : {
         canvas : {
-            width : 500,
-            height : 300,
+            width : 1000,
+            height : 650,
             refreshRate : 20
         },
         copter : {
-            width : 30,
-            height : 15,
+            width : 50,
+            height : 20,
             topSpeed : 5,                   // max speed
             acceleration : 0.15,            // how much to increase the speed by each time the game refreshes and the button is held down
             img : null                      // optional copter image path, relative to the html page
@@ -31,16 +31,16 @@ var jsCopter = {
         walls : {
             separation : 19,                //fudge
             width : 20,                        
-            step : 5,                       // potential height difference for each new wall
-            startHeight : 60,
-            maxHeight : 120,
+            step : 20,                       // potential height difference for each new wall
+            startHeight : 100,
+            maxHeight : 150,
             heightIncreaseInterval : 5,     // how often to increase the height of each wall (from start to max)
             heightIncreaseStep : 10         // how much to increase the height of each wall by
         },
         obstacles : {
-            separation : 250,               // frequency of obstacles
-            width : 20,
-            height : 50
+            separation : 150,               // frequency of obstacles
+            width : 30,
+            height : 100
         },
         colours : {
             bg : "#000000",
