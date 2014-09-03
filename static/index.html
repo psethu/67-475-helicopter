@@ -1,15 +1,23 @@
-<script src="/socket.io/socket.io.js"></script>
-<script src="/static/clientSocketController.js"></script>
-<script src="/static/clientSocketInfo.js"></script>
-<script type="text/javascript">
-	var socket = io('/index-page');
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>475 Plays Helicopter</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/gamestyle.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/clientSocketController.js"></script>
+    <script src="/static/clientSocketInfo.js"></script>
+    <script type="text/javascript">
+    	var socket = io('/index-page');
+    </script>
+</head>
 <body>
-	<h1>Welcome player</h1>
+    <div id="title">475 plays helicopter</div>
+    <ul align="center" id="extra-info">
+        <li id="num-players">0 players</li>
+    </ul>
 
-    <div id="helicopter-container">
-    </div>
-    <div id="test"></div>
+    <div id="helicopter-container"></div>
     <script>
         var serverInfo = new serverInfo(socket);
         socket.on('donotconnect', function(){
@@ -21,8 +29,15 @@
     <script>
     	//this will cause the server info object to refresh every 50 milliseconds
     	setInterval('serverInfo.checkPress()', 50);
+        setInterval(function(){
+            serverInfo.getNumPlayers();
+            var numPlayersNode = document.getElementById("num-players");
+            numPlayersNode.innerHTML = "players: "+serverInfo.lastNumPlayers;
+        },250);
+
         // initialise the copter
         jsCopter.init("helicopter", "helicopter-container", serverInfo);
     </script>
 
 </body>
+</html>

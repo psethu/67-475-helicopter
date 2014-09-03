@@ -1,0 +1,39 @@
+body{
+    background-color:#ddd;
+}
+
+#title{
+    font-size:40px;
+    background-color:#ddd;
+    text-align:center;
+    margin-bottom:15px;
+    background-color:#888;
+    color:#fff;
+}
+
+#helicopter-container{
+    position:relative;
+}
+
+#helicopter{
+    position:relative;
+    display:block;
+    margin:auto;
+}
+
+#extra-info{
+    list-style-type: none;
+    font-size:26px;
+}
+
+#extra-info li{
+    display:inline;
+    padding-right:12px;
+    padding-left:12px;
+    border-right:solid 1px black;
+}
+
+
+#extra-info li:last-child{
+    border-right:none;
+}

@@ -341,13 +341,13 @@ var jsCopter = {
     createScore: function(scoreType) {
         
         // create score element
-        var scoreContainer = document.createElement("p");
+        var scoreContainer = document.createElement("li");
         scoreContainer.id = scoreType+"scorecontainer";
         var scoreContainerText = document.createTextNode(this.ucFirst(scoreType) + " score: ");
         scoreContainer.appendChild(scoreContainerText);
         
         // create score container, ready to return
-        var score = document.createElement("strong");
+        var score = document.createElement("span");
         score.id = scoreType+"score";
         
         // set the current score to 0
@@ -356,7 +356,7 @@ var jsCopter = {
         scoreContainer.appendChild(score);
 
         // add the scores to the page
-        this.container.appendChild(scoreContainer);
+        document.getElementById("extra-info").appendChild(scoreContainer);
         
         return score;
     },
@@ -737,15 +737,15 @@ var jsCopter = {
         } 
         
         // condition : create death text ?
-        if (!this.deathText) {
-            this.deathText = document.createElement("p");
-            this.deathText.id = "deathtext";
-            var deathTextText = document.createTextNode("CRASH!");
-            this.deathText.appendChild(deathTextText);
-            this.container.appendChild(this.deathText);
-        } else {
-            this.deathText.style.display = "block";
-        }
+        // if (!this.deathText) {
+            // this.deathText = document.createElement("p");
+            // this.deathText.id = "deathtext";
+            // var deathTextText = document.createTextNode("CRASH!");
+            // this.deathText.appendChild(deathTextText);
+            // this.container.appendChild(this.deathText);
+        // } else {
+            // this.deathText.style.display = "block";
+        // }
         
         // stop the interval
         clearInterval(this.canvasInterval);    
